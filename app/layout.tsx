@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${garamond.variable} h-full`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${garamond.variable} h-dvh`}>
+      <body className="min-h-dvh flex flex-col">{children}</body>
     </html>
   );
 }
