@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-parchment: #f5e6c8;
+  --color-parchment-dark: #e8d5a3;
+  --color-ink: #2c1810;
+  --color-ink-light: #5c3d2e;
+  --color-gold: #c9a227;
+  --color-gold-light: #e8c84a;
+  --color-shadow: #1a0f0a;
+}
+
+@font-face {
+  font-family: "Ringbearer";
+  src: url("/fonts/ringbearer.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #0a0b0e;
+  background-image:
+    radial-gradient(ellipse 90% 70% at 50% 30%, #161820 0%, #0a0b0e 70%),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 60px,
+      rgba(201, 162, 39, 0.012) 60px,
+      rgba(201, 162, 39, 0.012) 61px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 120px,
+      rgba(201, 162, 39, 0.008) 120px,
+      rgba(201, 162, 39, 0.008) 121px
+    );
+  color: #f5e6c8;
+  font-family: "EB Garamond", "Garamond", Georgia, serif;
+}
+
+/* Middle-earth map — sepia-toned, very subtle */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/Map_of_Middle-Earth.svg.png");
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.38;
+  filter: grayscale(60%) sepia(20%) brightness(0.85);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Vignette + noise overlay on top of map */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 70%, #0a0b0e55 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ring glow animation — box-shadow for circular elements */
+@keyframes ring-pulse {
+  0%, 100% { box-shadow: 0 0 8px 2px #c9a227, 0 0 20px 4px #c9a22740; }
+  50%       { box-shadow: 0 0 18px 5px #c9a227, 0 0 45px 10px #c9a22760; }
+}
+
+.ring-glow {
+  animation: ring-pulse 2s ease-in-out infinite;
+}
+
+/* Ring glow for images — filter: drop-shadow follows the shape, not the bounding box */
+@keyframes ring-pulse-img {
+  0%, 100% { filter: drop-shadow(0 0 6px #c9a227) drop-shadow(0 0 14px #c9a22750); }
+  50%       { filter: drop-shadow(0 0 16px #c9a227) drop-shadow(0 0 36px #c9a22770); }
+}
+
+.ring-glow-img {
+  animation: ring-pulse-img 2s ease-in-out infinite;
+}
+
+/* Fade-in for assistant responses */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0b0e; }
+::-webkit-scrollbar-thumb { background: #c9a22750; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #c9a227; }

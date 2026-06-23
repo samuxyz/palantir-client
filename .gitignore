@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Claude Code
+AGENTS.md
+CLAUDE.md
+.claude/
+
+# macOS
+.DS_Store
