@@ -63,7 +63,7 @@ export default function Home() {
   const lastAssistantId = [...messages].reverse().find((m) => m.role === "assistant")?.id;
 
   return (
-    <div className="relative z-10 flex flex-col h-dvh w-full max-w-3xl mx-auto px-8">
+    <div className="relative z-10 flex flex-col h-svh w-full max-w-3xl mx-auto px-8">
       <header className="shrink-0 text-center pt-8 pb-2">
         <h1
           className="text-4xl md:text-5xl text-[#c9a227] mb-2 tracking-wide drop-shadow-lg cursor-pointer hover:opacity-80 transition-opacity"
